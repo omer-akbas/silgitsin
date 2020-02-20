@@ -28,5 +28,5 @@ func hi(name string) (string, error) {
 }
 
 func process() {
-
+	fmt.Println("process starting...")
 }
