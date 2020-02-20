@@ -16,6 +16,8 @@ func main() {
 	}else {
 		fmt.Println(hiName)
 	}
+
+	process()
 }
 
 func sum(n1, n2 int) int {
