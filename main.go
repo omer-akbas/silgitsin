@@ -13,8 +13,7 @@ func main() {
 	err := process(ch)
 	if err != nil {
 		log.Println("process func err: ", err.Error())
-		e := errsend.ErrSend{To: []string{"izmirlieleman@gmail.com"}, Subject: "Test", Body: err.Error(), IsTelegram:true}
-		_ = e.Send()
+		sendEr("Test sender: ", err.Error())
 	}
 	fmt.Println(<-ch)
 
@@ -22,7 +21,7 @@ func main() {
 	fmt.Println("total: ", total)
 
 	err = gocr.ImageToText("./temp/in/1.tif", "./temp/out/test")
-	if err != nil{
+	if err != nil {
 		log.Println("err:", err.Error())
 	}
 }
@@ -35,4 +34,12 @@ func process (ch chan string) error{
 
 func sum(n1, n2 int) int {
 	return n1 + n2
+}
+
+func sendEr(subject, body string) {
+	e := errsend.ErrSend{To: []string{"izmirlieleman@gmail.com"}, Subject: subject, Body: body, IsTelegram:true}
+	err := e.Send()
+	if err != nil {
+		log.Println("errsend failend to send")
+	}
 }
